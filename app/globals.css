@@ -390,6 +390,14 @@ a {
   text-transform: uppercase;
 }
 
+.answer-name-line {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  justify-content: center;
+}
+
 .oracle-answer strong {
   color: #22231a;
   font-family: Georgia, "Times New Roman", serif;
@@ -407,6 +415,18 @@ a {
   margin: 10px auto 0;
   opacity: 0.55;
   width: 32px;
+}
+
+.animal-pill {
+  background: #efe8d8;
+  border: 1px solid rgba(201, 151, 63, 0.24);
+  border-radius: 999px;
+  color: #6f5b34;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  padding: 7px 10px;
+  text-transform: uppercase;
 }
 
 .oracle-answer .finished-label {
@@ -982,6 +1002,15 @@ a {
   .oracle-answer strong {
     font-size: 36px;
     overflow-wrap: anywhere;
+  }
+
+  .answer-name-line {
+    flex-direction: column;
+  }
+
+  .animal-pill {
+    font-size: 10px;
+    text-align: center;
   }
 
   .group-check {

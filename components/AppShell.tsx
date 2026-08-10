@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { GAME_MASTERS } from "@/lib/config";
+import { GAME_MASTERS, GAME_NAMES } from "@/lib/config";
 import { useGameState } from "@/components/StateProvider";
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -28,7 +28,8 @@ export function AppShell({ children }: { children: ReactNode }) {
               key={number}
               href={`/game/${number}`}
               className={pathname === `/game/${number}` ? "active" : ""}
-              aria-label={`Game master ${number}`}
+              aria-label={`Game ${number}: ${GAME_NAMES[number]}`}
+              title={GAME_NAMES[number]}
             >
               GM {number}
             </Link>

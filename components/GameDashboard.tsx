@@ -1,6 +1,16 @@
 "use client";
 
-import { CYCLES, GROUPS, GROUP_IDS, TEAMS, groupForCharacter, type GameMaster, type Team } from "@/lib/config";
+import {
+  CYCLES,
+  GAME_NAMES,
+  GAME_ONE_ANIMALS,
+  GROUPS,
+  GROUP_IDS,
+  TEAMS,
+  groupForCharacter,
+  type GameMaster,
+  type Team,
+} from "@/lib/config";
 import { isCharacterAllowed, visibleIndex } from "@/lib/game";
 import { useGameState } from "@/components/StateProvider";
 import { LoadingState } from "@/components/LoadingState";
@@ -22,6 +32,7 @@ function TeamCycleCard({ gameMaster, team }: { gameMaster: GameMaster; team: Tea
   const exclusions = state.exclusions[team];
   const currentIndex = visibleIndex(gameMaster, state.progress[gameMaster][team], exclusions);
   const currentCharacter = currentIndex === null ? null : cycle[currentIndex];
+  const animal = gameMaster === 1 && currentCharacter ? GAME_ONE_ANIMALS[currentCharacter] : null;
   const availableCount = cycle.filter((character) => isCharacterAllowed(character, exclusions)).length;
   const isPending = pending.has(`progress-${gameMaster}-${team}`);
 
@@ -41,7 +52,10 @@ function TeamCycleCard({ gameMaster, team }: { gameMaster: GameMaster; team: Tea
       <div className="oracle-answer">
         <span className="answer-label">Personnage à faire deviner</span>
         {currentCharacter ? (
-          <strong>{currentCharacter}</strong>
+          <div className="answer-name-line">
+            <strong>{currentCharacter}</strong>
+            {animal && <span className="animal-pill">{animal}</span>}
+          </div>
         ) : (
           <strong className="finished-label">Parcours terminé</strong>
         )}
@@ -92,7 +106,7 @@ export function GameDashboard({ gameMaster }: { gameMaster: GameMaster }) {
       <section className="page-heading">
         <div>
           <span className="eyebrow">Poste de jeu</span>
-          <h1>Game master <em>{String(gameMaster).padStart(2, "0")}</em></h1>
+          <h1>{GAME_NAMES[gameMaster]} <em>{String(gameMaster).padStart(2, "0")}</em></h1>
         </div>
         <p>
           Accueille l’équipe, fais-lui deviner le personnage affiché, puis appuie sur

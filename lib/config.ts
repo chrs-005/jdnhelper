@@ -4,6 +4,14 @@ export type Team = (typeof TEAMS)[number];
 export const GAME_MASTERS = [1, 2, 3, 4, 5] as const;
 export type GameMaster = (typeof GAME_MASTERS)[number];
 
+export const GAME_NAMES: Record<GameMaster, string> = {
+  1: "Answer wrong to the previous question",
+  2: "Scalpe",
+  3: "Contact",
+  4: "Mix color Wordle",
+  5: "Sensei cup egg remove",
+};
+
 export const GROUP_IDS = ["A", "B", "C"] as const;
 export type GroupId = (typeof GROUP_IDS)[number];
 
@@ -27,6 +35,18 @@ export const TEAM_META: Record<Team, { short: string; color: string }> = {
   Leops: { short: "LE", color: "#d59425" },
   Panda: { short: "PA", color: "#454844" },
   Faucon: { short: "FA", color: "#7d4b8e" },
+};
+
+export const GAME_ONE_ANIMALS: Partial<Record<string, string>> = {
+  Ulysse: "Chien / Dog",
+  Zeus: "Aigle / Eagle",
+  "HermÃ¨s": "Tortue / Tortoise",
+  "PersÃ©e": "Cheval / Horse",
+  "AndromÃ¨de": "Dauphin / Dolphin",
+  "PÃ©nÃ©lope": "Oie / Goose",
+  "HÃ©ra": "Paon / Peacock",
+  "CircÃ©": "Grenouille / Frog",
+  "ThÃ©sÃ©e": "Taureau / Bull",
 };
 
 export function isTeam(value: unknown): value is Team {
