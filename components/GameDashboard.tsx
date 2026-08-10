@@ -83,6 +83,26 @@ function TeamCycleCard({ gameMaster, team }: { gameMaster: GameMaster; team: Tea
         })}
       </div>
 
+      {gameMaster === 1 && (
+        <div className="animal-cycle-list" aria-label={`Animaux du cycle de ${team}`}>
+          {cycle.map((character, index) => {
+            const blocked = !isCharacterAllowed(character, exclusions);
+            const active = index === currentIndex;
+            const listedAnimal = GAME_ONE_ANIMALS[character];
+
+            return (
+              <span
+                key={`${character}-${index}-animal`}
+                className={`animal-cycle-chip${blocked ? " blocked" : ""}${active ? " current" : ""}`}
+              >
+                <strong>{character}</strong>
+                {listedAnimal && <small>{listedAnimal}</small>}
+              </span>
+            );
+          })}
+        </div>
+      )}
+
       <button
         type="button"
         className="advance-button"

@@ -498,6 +498,55 @@ a {
   text-decoration: line-through;
 }
 
+.animal-cycle-list {
+  display: grid;
+  gap: 6px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 16px;
+}
+
+.animal-cycle-chip {
+  background: #f3efe5;
+  border: 1px solid rgba(39, 41, 31, 0.08);
+  border-radius: 7px;
+  min-width: 0;
+  padding: 7px 8px;
+}
+
+.animal-cycle-chip strong,
+.animal-cycle-chip small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.animal-cycle-chip strong {
+  color: #292a20;
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+
+.animal-cycle-chip small {
+  color: #7c715c;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.animal-cycle-chip.current {
+  background: var(--night-soft);
+  border-color: var(--night-soft);
+}
+
+.animal-cycle-chip.current strong,
+.animal-cycle-chip.current small {
+  color: #fff8eb;
+}
+
+.animal-cycle-chip.blocked {
+  opacity: 0.48;
+}
+
 .advance-button {
   align-items: center;
   background: var(--night-soft);
@@ -1011,6 +1060,17 @@ a {
   .animal-pill {
     font-size: 10px;
     text-align: center;
+  }
+
+  .animal-cycle-list {
+    grid-template-columns: 1fr;
+  }
+
+  .animal-cycle-chip strong,
+  .animal-cycle-chip small {
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
   }
 
   .group-check {
