@@ -47,6 +47,7 @@ const GAME_ONE_ANIMALS_BY_KEY: Record<string, string> = {
   hera: "Paon / Peacock",
   circe: "Grenouille / Frog",
   thesee: "Taureau / Bull",
+  athena: "Chouette / Owl",
 };
 
 export function animalForGameOne(character: string): string | null {
