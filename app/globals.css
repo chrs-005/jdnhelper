@@ -870,6 +870,16 @@ a {
   .not-found {
     min-height: calc(100vh - 132px);
   }
+
+  .cycles-grid,
+  .control-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cycle-card,
+  .control-card {
+    width: 100%;
+  }
 }
 
 @media (max-width: 700px) {
@@ -919,11 +929,6 @@ a {
     font-size: 12px;
   }
 
-  .cycles-grid,
-  .control-grid {
-    grid-template-columns: 1fr;
-  }
-
   .cycle-card,
   .control-card {
     border-radius: 15px;
@@ -941,6 +946,61 @@ a {
   .tip-bar {
     align-items: flex-start;
     text-align: left;
+  }
+}
+
+@media (max-width: 520px) {
+  .page-wrap {
+    padding: 24px 12px 42px;
+  }
+
+  .card-topline,
+  .control-card-head {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .team-identity {
+    min-width: 0;
+  }
+
+  .team-identity h2 {
+    font-size: 18px;
+    overflow-wrap: anywhere;
+  }
+
+  .available-count,
+  .completion-badge {
+    flex: 0 0 auto;
+  }
+
+  .oracle-answer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .oracle-answer strong {
+    font-size: 36px;
+    overflow-wrap: anywhere;
+  }
+
+  .group-check {
+    align-items: start;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .group-status {
+    grid-column: 2;
+  }
+
+  .group-copy small {
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+  }
+
+  .advance-button {
+    min-height: 54px;
   }
 }
 
