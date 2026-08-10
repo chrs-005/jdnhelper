@@ -3,10 +3,10 @@
 import {
   CYCLES,
   GAME_NAMES,
-  GAME_ONE_ANIMALS,
   GROUPS,
   GROUP_IDS,
   TEAMS,
+  animalForGameOne,
   groupForCharacter,
   type GameMaster,
   type Team,
@@ -32,7 +32,7 @@ function TeamCycleCard({ gameMaster, team }: { gameMaster: GameMaster; team: Tea
   const exclusions = state.exclusions[team];
   const currentIndex = visibleIndex(gameMaster, state.progress[gameMaster][team], exclusions);
   const currentCharacter = currentIndex === null ? null : cycle[currentIndex];
-  const animal = gameMaster === 1 && currentCharacter ? GAME_ONE_ANIMALS[currentCharacter] : null;
+  const animal = gameMaster === 1 && currentCharacter ? animalForGameOne(currentCharacter) : null;
   const availableCount = cycle.filter((character) => isCharacterAllowed(character, exclusions)).length;
   const isPending = pending.has(`progress-${gameMaster}-${team}`);
 
@@ -82,26 +82,6 @@ function TeamCycleCard({ gameMaster, team }: { gameMaster: GameMaster; team: Tea
           );
         })}
       </div>
-
-      {gameMaster === 1 && (
-        <div className="animal-cycle-list" aria-label={`Animaux du cycle de ${team}`}>
-          {cycle.map((character, index) => {
-            const blocked = !isCharacterAllowed(character, exclusions);
-            const active = index === currentIndex;
-            const listedAnimal = GAME_ONE_ANIMALS[character];
-
-            return (
-              <span
-                key={`${character}-${index}-animal`}
-                className={`animal-cycle-chip${blocked ? " blocked" : ""}${active ? " current" : ""}`}
-              >
-                <strong>{character}</strong>
-                {listedAnimal && <small>{listedAnimal}</small>}
-              </span>
-            );
-          })}
-        </div>
-      )}
 
       <button
         type="button"

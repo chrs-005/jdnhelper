@@ -37,17 +37,26 @@ export const TEAM_META: Record<Team, { short: string; color: string }> = {
   Faucon: { short: "FA", color: "#7d4b8e" },
 };
 
-export const GAME_ONE_ANIMALS: Partial<Record<string, string>> = {
-  Ulysse: "Chien / Dog",
-  Zeus: "Aigle / Eagle",
-  "HermÃ¨s": "Tortue / Tortoise",
-  "PersÃ©e": "Cheval / Horse",
-  "AndromÃ¨de": "Dauphin / Dolphin",
-  "PÃ©nÃ©lope": "Oie / Goose",
-  "HÃ©ra": "Paon / Peacock",
-  "CircÃ©": "Grenouille / Frog",
-  "ThÃ©sÃ©e": "Taureau / Bull",
+const GAME_ONE_ANIMALS_BY_KEY: Record<string, string> = {
+  ulysse: "Chien / Dog",
+  zeus: "Aigle / Eagle",
+  hermes: "Tortue / Tortoise",
+  persee: "Cheval / Horse",
+  andromede: "Dauphin / Dolphin",
+  penelope: "Oie / Goose",
+  hera: "Paon / Peacock",
+  circe: "Grenouille / Frog",
+  thesee: "Taureau / Bull",
 };
+
+export function animalForGameOne(character: string): string | null {
+  const key = character
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+
+  return GAME_ONE_ANIMALS_BY_KEY[key] ?? null;
+}
 
 export function isTeam(value: unknown): value is Team {
   return typeof value === "string" && (TEAMS as readonly string[]).includes(value);
